@@ -1,4 +1,3 @@
 # OTW-OSN
-TLX TOKI BY Akhdan Yohan Nugroho
-\nMaap kalo codenya berantakan
-masih belajar
+TLX TOKI BY Akhdan Yohan Nugroho,
+Maap kalo codenya berantakan, Masih belajar
