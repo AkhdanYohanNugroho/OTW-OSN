@@ -5,6 +5,7 @@ using namespace std;
 vector<vector<int>> proses(vector<vector<int>> a, int m, int n){
     vector<vector<int>> hasil(m, vector<int>(n));
     hasil = a;
+    cout << endl;
     for(int i = 0; i < m; i++){
         bool valid = false;
         for(int j = 0; j < n; j++){
@@ -17,7 +18,6 @@ vector<vector<int>> proses(vector<vector<int>> a, int m, int n){
         }
 
         if(valid == true){
-            cout << "i = " << i << endl;
             for(int k = 0; k < n; k++){
                 hasil[i][k] = 0;
                 int satu = 0;
@@ -42,15 +42,21 @@ vector<vector<int>> proses(vector<vector<int>> a, int m, int n){
                     hasil[l][k] = 1;
                 }
             }
-            cout << "hasil" << endl;
-            for(int i = 0; i < m; i++){
-                cout << "i = " << i << "  ";
-                for(int j = 0; j < n; j ++){
-                    cout << hasil[i][j];
-                }
-                cout << endl;
+        }
+    }
+    
+    for(int i = 0; i < m; i++){
+        bool validasi = false;
+        for(int j = 0; j < n; j++){
+            if(hasil[i][j] == 0){
+                validasi = false;
+                break;
+            }else{
+                validasi = true;
             }
-            cout << endl;
+        }
+        if(validasi == true){
+            return proses(hasil, m, n);
         }
     }
     return hasil;
@@ -67,14 +73,6 @@ int main(){
             matrix[i][j] = stoi(string(1, input[j]));
         }
     }
-    cout << "matrix" << endl;
-    for(int i = 0; i < m; i++){
-        for(int j = 0; j < n; j ++){
-            cout << matrix[i][j];
-        }
-        cout << endl;
-    }
-    cout << endl;
 
     matrix = proses(matrix, m, n);
     for(int i = 0; i < m; i++){
