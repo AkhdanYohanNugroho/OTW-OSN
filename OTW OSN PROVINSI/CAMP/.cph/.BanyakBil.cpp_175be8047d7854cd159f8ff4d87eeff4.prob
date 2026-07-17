@@ -1,0 +1,1 @@
+{"name":"Local: BanyakBil","url":"c:\\Users\\HP\\Desktop\\OTW-OSN\\OTW OSN PROVINSI\\CAMP\\BanyakBil.cpp","tests":[{"id":1784282183641,"input":"5\n2 3 2 2 3","output":"2"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\HP\\Desktop\\OTW-OSN\\OTW OSN PROVINSI\\CAMP\\BanyakBil.cpp","group":"local","local":true}
