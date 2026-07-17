@@ -14,9 +14,19 @@ int main(){
         }
     }
 
-    for(long long i = 1; i<=perulangan;i++){
+    if(perulangan%2!=0){
+        perulangan +=1;
+    }
+
+    for(long long i = 1; i<=perulangan/2;i++){
         if(c%i==d){
-            ans ++;
+            if(i!=d){
+                ans++;
+            }
+            if((c-d)/i!=d){
+                ans++;
+            }
+            
         }
     }
 
