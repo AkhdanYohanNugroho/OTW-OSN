@@ -2,22 +2,26 @@
 using namespace std;
 #define int long long
 
-int proses(){
+signed main(){
     int n;cin>>n;
     vector<int>v(n);
 
     for(int i = 0;i<n;i++){
-        cin >> v[i];
-    }
-
-    int kecepatan = 0;
-    for(int i = 0; i<n;i++){
-        for(int j = ; j<n;j++){
-
+        int c;cin>>c;
+        vector<bool>b(101);
+        bool auth = false;
+        for(int i = 0; i<c;i++){
+            int a;cin>>a;
+            if(b[a]){
+                auth = true;
+            }else{
+                b[a]=true;
+            }
+        }
+        if(auth){
+            cout << "Yes"<<endl;
+        }else{
+            cout << "No"<<endl;
         }
     }
-}
-
-signed main(){
-
 }

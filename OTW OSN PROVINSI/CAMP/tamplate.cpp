@@ -7,63 +7,42 @@ signed main(){
 
     for(int i = 0; i<n;i++){
         int c;cin>>c; //input 2
-        vector<int>v(c);
-        map<int,int>m;
+        vector<int>v(c);//tamplate
 
         for(int j = 0; j<c;j++){ //input arr
-            if(j == 0){
-                cin >> v[j];
-            }else{
-                cin >> v[j];
-                for(int f = 0; f < j;f++){
-                    if(v[f]==v[j]){
-                        m[f] = j;
-                    }
-                }
-            }
+            cin >> v[j];
         }
         int f;cin>>f;//input 4
         for(int j = 0;j<f;j++){ //input kata
             string s;cin>>s;
-            bool valid = true;
-            cout << s<<endl;
+            map<char,int>m;
+            map<int,char>m1;
+            // cout << s << endl;
+            bool auth = true;
             if(s.length()!=v.size()){
-                cout << "NO" << endl;
-                valid = false;
-            }else{
-                vector<bool>o(s.length(), false);
-                for(auto x:m){
-                    if(s[x.first]!=s[x.second]){
-                        cout << "NO" << endl;
-                        valid = false;
-                        break;
-                    }
-                    o[x.first] = true;
-                    o[x.second] = true;
+                cout << "NO"<<endl;
+                continue;
+            }
+            
+            for(int k = 0;k<c;k++){
+                if(m.count(s[k])){
+                    if(m[s[k]] != v[k]) auth = false;
+                }else{
+                    m[s[k]] = v[k];
                 }
-                bool auth = false;
-                for(int u = 0; u < s.length()-1;u++){
-                    if(auth)break;
-                    cout << "u: " << u<<endl;
-                    bool pjalan = false;
-                    for(int p = u+1; p<s.length();p++){
-                        if(auth)break;
-
-                        if(o[u] || o[p]){
-                            break;
-                        }
-                        if(s[u]==s[p]){
-                            cout << "NO" << endl;
-                            valid = false;
-                            auth = true;
-                            break;
-                        }
-                        pjalan = false;
-                        cout << "p: " << p<<endl;
-                    }
+                if(m1.count(v[k])){
+                    if(m1[v[k]]!=s[k])auth = false;
+                }else{
+                    m1[v[k]] = s[k];
                 }
             }
-            if(valid)cout << "YES" <<endl;
+
+
+            if(auth){
+                cout << "YES" << endl;
+            }else{
+                cout << "NO" << endl;
+            }
         }
     }
 }
