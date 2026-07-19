@@ -21,17 +21,18 @@ signed main(){
             // cout << "j: "<<j << " |";
             // cout << "dp["<<j << "]: " << dp[j]<<" |";
             // cout << "h["<<i << "]: " << h[i]<<" |";
-            int tidak = dp[j];
-            int iya = 0;
+            // int tidak = dp[j];
+            // int iya = 0;
             if(j >= h[i]){
                 // if(dp[i][j] > dp[i-1][j]){
                 //     dp[i][j] = hal[i];
                 // }
-                iya = dp[j-h[i]]+hal[i];
+                // iya = dp[j-h[i]]+hal[i];
+                dp[j] = max(dp[j-h[i]]+hal[i], dp[j]);
             }
             // cout << "iya: "<<iya << " |";
             // cout << "tidak: "<<tidak << endl;
-            dp[j] = max(iya,tidak);
+            // dp[j] = max(iya,tidak);
         }
     }
     cout << dp[x];
