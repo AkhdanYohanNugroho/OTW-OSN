@@ -5,7 +5,7 @@ using namespace std;
 
 int main(){
     int limit = 1000000;
-
+    
     vector <bool> prima(limit + 1, true);
     prima[0] = false;
     prima[1] = false;
