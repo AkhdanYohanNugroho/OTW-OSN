@@ -2,81 +2,44 @@
 using namespace std;
 #define int long long
 
-int arahX[4] = {-1,1,0,0};
-int arahY[4] = {0,0,-1,1};
-int n;
-int m;
-vector<vector<bool>>denah (n, vector<bool>(m, false));
-void dfs(int i,int j, int n, int m){
-    
-    // denah[i][j] = true;
-    
-    cout << endl;
-    int nx = 0;
-    int ny = 0;
-    for(int k = 0;k<4;k++){
-        nx = j + arahX[k]
-        ny = i + arahY[k];
-
-        if(nx >= 0 && nx < n && ny >= 0 && ny<m && !denah[i][j]){
-            denah[i][j] = true;
-            for(int i = 0; i<5;i++){
-                for(int j = 0; j<8;j++){
-                    cout << denah[i][j];
-                }
-                cout << endl;
-            }
-            cout << endl;
-        }  
-    }
-    
-    // if(denah[i+1][j]==0){
-    //     dfs(denah,i+1,j,ruang);
-    // }
-    // if(denah[i-1][j]==0){
-    //     dfs(denah,i-1,j,ruang);
-    // }
-    // if(denah[i][j+1]=='.'){
-    //     dfs(denah,i,j+1,ruang);
-    // }
-    // if(denah[i][j-1]=='.'){
-    //     dfs(denah,i,j-1,ruang);
-    // }
-}
-
 signed main(){
-    cin>>n>>m;
-    vector<string>v(n);
-
-    for(int i = 0; i<n;i++){
-        cin >> v[i];
+    int n,m;cin>>n>>m;
+    vector<string>grid(n);
+    vector<vector<bool>>visited(n, vector<bool>(m,false));
+    queue<pair<int,int>>q;
+    int dx[4] = {-1,1,0,0};
+    int dy[4] = {0,0,-1,1};
+    for(int i=0;i<n;i++){
+        cin >> grid[i];
     }
 
-    for(int i = 0; i<n;i++){
+    int ruang = 0;
+    for(int i = 0;i<n;i++){
         for(int j = 0; j<m;j++){
-            if(v[i][j]=='#'){
-                denah[i][j] = true;
+            if(grid[i][j] == '.'&& !visited[i][j]){
+                ruang++;
+                visited[i][j] = true;
+                q.push({i,j});
+                while(!q.empty()){
+                    pair<int,int>depan = q.front();
+                    q.pop();
+                    int r = depan.first;
+                    int c = depan.second;
+
+                    for(int k = 0;k<4;k++){
+                        int nr = r+dx[k];
+                        int nc = c+dy[k];
+
+                        if(nr>=0&&nr<=n-1&&nc<=m-1&&nc>=0){
+                            if(grid[nr][nc] == '.' && !visited[nr][nc]){
+                                visited[nr][nc] = 1;
+                                q.push({nr,nc});
+                            }
+                        }
+                    }
+                }
             }
         }
     }
-
-    int room = 0;
-    for(int i = 0; i<n;i++){
-        for(int j = 0; j<m;j++){
-            if(denah[i][j] == 0){
-                cout << "jalann" << endl;
-                dfs(i,j, n,m);
-                room++;
-                cout << "jalan" << endl;
-            }
-        }
-    }
-
-    for(int i = 0; i<n;i++){
-        for(int j = 0; j<m;j++){
-            cout << denah[i][j];
-        }
-        cout << endl;
-    }
-
+    cout << ruang;
 }
