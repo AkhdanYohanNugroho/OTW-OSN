@@ -11,7 +11,7 @@ signed main(){
         cin>>koin[i];
     }
     int k;cin>>k;
-    vi dp(k+1,100);
+    vi dp(k+1,1e8);
     dp[0] = 0;
 
     for(int i = 1;i<=k;i++){
@@ -22,5 +22,9 @@ signed main(){
         }
     }
 
-    cout << dp[k];
+    if(dp[k] == 1e8){
+        cout << -1;
+    }else{
+        cout << dp[k];
+    }
 }
