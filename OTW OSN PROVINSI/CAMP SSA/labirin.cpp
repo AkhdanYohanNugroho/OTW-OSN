@@ -13,7 +13,7 @@ signed main(){
     bool ketemuB = 0;
     int x[4] = {-1,1,0,0};
     int y[4] = {0,0,-1,1};
-    vector<vector<pair<int,int>>> parentR(n, vector<pair<int,int>>(m, -1));
+    vector<vector<pair<int,int>>> parent(n, vector<pair<int,int>>(m, {-1,-1}));
 
     for(int i=0;i<n;i++){
         cin>>grid[i];
@@ -46,7 +46,7 @@ signed main(){
                 if((grid[nr][nc] == '.' || grid[nr][nc]=='B')&&!visited[nr][nc]){
                     visited[nr][nc]=1;
                     q.push({nr,nc});
-                    parentR[nr][nc] = {p.first,p.second};
+                    parent[nr][nc] = p;
                 }
             }
         }
@@ -55,6 +55,25 @@ signed main(){
         cout << "NO" << endl;
         return 0;
     }
-
-    
+    string jawab = "";
+    pair<int,int>now = b;
+    while(now != a){
+        int pr = parent[now.first][now.second].first;
+        int pc = parent[now.first][now.second].second;
+        if(pr == now.first && pc>now.second){
+            jawab += 'L';
+            now = {pr,pc};
+        }else if(pr == now.first && pc<now.second){
+            now = {pr,pc};
+            jawab += 'R';
+        }else if(pr > now.first && pc==now.second){
+            now = {pr,pc};
+            jawab += 'U';
+        }else if(pr < now.first && pc==now.second){
+            now = {pr,pc};
+            jawab += 'D';
+        }
+    }
+    reverse(jawab.begin(),jawab.end());
+    cout << "YES" <<endl<< jawab.length()<<endl<<jawab;
 }
